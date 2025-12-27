@@ -5,7 +5,7 @@ import com.airtribe.learntrack.enums.CourseStatus;
 import static com.airtribe.learntrack.util.IdGenerator.getNextCourseId;
 
 /**
- * Represents a course with name, description, duration, and active status.
+ * Represents a course with core details and extensible metadata.
  */
 public class Course {
    private final int id;

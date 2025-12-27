@@ -36,14 +36,14 @@ public interface DisplayServices {
    /**
     * Displays an error message.
     *
-    * @param string the error message to display
+    * @param errorMessage the error message to display
     */
-   void displayError(String string);
+   void displayError(String errorMessage);
 
    /**
     * Prints the given string without a trailing newline.
     *
-    * @param string the text to print
+    * @param text the text to print
     */
-   void print(String string);
+   void print(String text);
 }

@@ -1,4 +1,3 @@
-
 package com.airtribe.learntrack.repository;
 
 import com.airtribe.learntrack.entity.Student;
