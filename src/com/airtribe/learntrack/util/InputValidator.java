@@ -8,10 +8,10 @@ import com.airtribe.learntrack.util.DisplayManager.DisplayServices;
 /**
  * Provides validation utilities for course and student details.
  */
-public abstract class InputValidator {
+public final class InputValidator {
 
    private static final DisplayServices displayServices = new ConsoleDisplayService();
-   private static DisplayServices getDisplayUtil(){ return displayServices; }
+   private static DisplayServices getDisplayServices(){ return displayServices; }
 
    private InputValidator(){}
 
@@ -19,13 +19,13 @@ public abstract class InputValidator {
       if(!courseName.isEmpty()){
          return true;
       }
-      getDisplayUtil().displayError(AppConstants.INVALID_COURSE_NAME);
+      getDisplayServices().displayError(AppConstants.INVALID_COURSE_NAME);
       return false;
    }
 
    private static boolean validateDurationInWeeks(int durationInWeeks) {
       if(durationInWeeks <= 0 || durationInWeeks > 7){
-         getDisplayUtil().displayError("Duration in weeks - (" + durationInWeeks + ") is invalid");
+         getDisplayServices().displayError("Duration in weeks - (" + durationInWeeks + ") is invalid");
          return false;
       }
       return true;
@@ -51,12 +51,12 @@ public abstract class InputValidator {
     */
    public static boolean validateStudentDetails(String firstName, String lastName){
       if(firstName.isEmpty()){
-         getDisplayUtil().displayError(AppConstants.EMPTY_FIRST_NAME);
+         getDisplayServices().displayError(AppConstants.EMPTY_FIRST_NAME);
          return false;
       }
 
       if(lastName.isEmpty()){
-         getDisplayUtil().displayError(AppConstants.EMPTY_LAST_NAME);
+         getDisplayServices().displayError(AppConstants.EMPTY_LAST_NAME);
          return false;
       }
 

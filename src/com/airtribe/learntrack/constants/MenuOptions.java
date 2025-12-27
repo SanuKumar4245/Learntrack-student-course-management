@@ -8,7 +8,7 @@ public abstract class MenuOptions {
    public static final String ENTER_COURSE_ID = "Enter course id: ";
    public static final String ENTER_COURSE_NAME = "Enter course name: ";
    public static final String ENTER_COURSE_DESCRIPTION = "Enter course description: ";
-   public static final String ENTER_COURSE_DURATION = "Enter course duration in week: ";
+   public static final String ENTER_COURSE_DURATION = "Enter course duration in weeks: ";
    public static final String ENTER_STUDENT_FIRST_NAME = "Enter student first name: ";
    public static final String ENTER_STUDENT_LAST_NAME = "Enter student last name: ";
    public static final String ENTER_STUDENT_EMAIL = "Enter student email: ";
@@ -74,7 +74,7 @@ public abstract class MenuOptions {
             │ 1. Add a New Course              │
             │ 2. List All Courses              │
             │ 3. List Active Courses           │
-            │ 4. List Deactivated Courses      │
+            │ 4. List Inactive Courses         │
             │ 5. Activate a Course             │
             │ 6. Deactivate a Course           │
             │ 7. View a Course Details         │
@@ -85,20 +85,20 @@ public abstract class MenuOptions {
 
    public static final String ENROLLMENT_SERVICE_MENU = """
             ===========================================================================================
-            ╭────────────────────────────────────────╮
-            │       ENROLLMENT SERVICE MENU          │
-            ├════════════════════════════════════════┤
-            │ 1. Enroll Student To Course            │
-            │ 2. List Enrollments of a Student       │
-            │ 3. Mark Enrollment Status of a Student │
-            │ 4. List all Students                   │
-            │ 5. List all Active Courses             │
-            │ 6. List all Enrollments                │
-            │ 7. List all Active Enrollments         │
-            │ 8. List all Completed Enrollments      │
-            │ 9. List all Cancelled Enrollments      │
-            │ 10. Go Back to Main Menu               │
-            ╰────────────────────────────────────────╯
+            ╭───────────────────────────────────────────╮
+            │       ENROLLMENT SERVICE MENU             │
+            ├═══════════════════════════════════════════┤
+            │ 1. Enroll Student To Course               │
+            │ 2. List Enrollments of a Student          │
+            │ 3. Update Enrollment Status for a Student │
+            │ 4. List all Students                      │
+            │ 5. List all Active Courses                │
+            │ 6. List all Enrollments                   │
+            │ 7. List all Active Enrollments            │
+            │ 8. List all Completed Enrollments         │
+            │ 9. List all Cancelled Enrollments         │
+            │ 10. Go Back to Main Menu                  │
+            ╰───────────────────────────────────────────╯
             """;
 }
 

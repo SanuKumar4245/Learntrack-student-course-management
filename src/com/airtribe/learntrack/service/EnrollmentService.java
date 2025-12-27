@@ -10,6 +10,8 @@ import com.airtribe.learntrack.enums.EnrollmentStatus;
 import com.airtribe.learntrack.repository.EnrollmentRepository;
 import com.airtribe.learntrack.util.DisplayManager.DisplayServices;
 
+import java.util.List;
+
 /**
  * Handles enrollment operations between students and courses.
  */
@@ -40,6 +42,14 @@ public class EnrollmentService {
       this.courseService = courseService;
    }
 
+   private void addNewEnrollment(Enrollment enrollment){
+      getEnrollments().add(enrollment);
+   }
+
+   private List<Enrollment> getEnrollments(){
+      return getEnrollmentRepository().getEnrollments();
+   }
+
    /**
     * Enrolls a student in a course if both exist and the course is active.
     *
@@ -57,7 +67,7 @@ public class EnrollmentService {
          return;
       }
       Enrollment enrollment = new Enrollment(student, course);
-      getEnrollmentRepository().getEnrollments().add(enrollment);
+      addNewEnrollment(enrollment);
       getDisplayManager().printWithSurroundingBlankLines(AppConstants.STUDENT_WITH_ID + studentId + " is enrolled in course with id " + courseId + " successfully.");
    }
 
@@ -68,7 +78,7 @@ public class EnrollmentService {
     */
    public void listAllEnrollments(EnrollmentStatus status){
       getDisplayManager().println("List of " + (status == null ? "All " : status.toString()) + " Enrollments are: ");
-      for(Enrollment enrollment : getEnrollmentRepository().getEnrollments()){
+      for(Enrollment enrollment : getEnrollments()){
          if(status == null || enrollment.getStatus().equals(status)){
             getDisplayManager().println(enrollment.toString());
          }
@@ -88,7 +98,7 @@ public class EnrollmentService {
          return;
       }
       getDisplayManager().println("List of Enrollments for student with id " + studentId + " are : ");
-      for(Enrollment enrollment : getEnrollmentRepository().getEnrollments()){
+      for(Enrollment enrollment : getEnrollments()){
          if(enrollment.getStudent().getId() == studentId){
             getDisplayManager().println(enrollment.toString());
          }
@@ -111,7 +121,7 @@ public class EnrollmentService {
          getDisplayManager().displayError(MenuOptions.INVALID_STUDENT_NEW_STATUS);
          return;
       }
-      for (Enrollment enrollment : getEnrollmentRepository().getEnrollments()) {
+      for (Enrollment enrollment : getEnrollments()) {
          if(enrollment.getStudent().getId() == studentId && enrollment.getCourse().getId() == courseId){
             enrollment.setStatus(newStatus);
             if(!newStatus.equals(EnrollmentStatus.ACTIVE)){

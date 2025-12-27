@@ -1,6 +1,6 @@
 package com.airtribe.learntrack.constants;
 
-public abstract class AppConstants {
+public final class AppConstants {
 
    private AppConstants() {}
 

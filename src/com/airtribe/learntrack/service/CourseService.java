@@ -13,7 +13,7 @@ import com.airtribe.learntrack.util.InputValidator;
  * deletion, and retrieval.
  */
 public class CourseService {
-   private final CourseRepository courseRepository = new CourseRepository();
+   private static final CourseRepository courseRepository = new CourseRepository();
    private final DisplayServices displayServices;
 
    private CourseRepository getCourseRepository() { return courseRepository; }
@@ -75,6 +75,10 @@ public class CourseService {
       getDisplayManager().printBlankLine();
    }
 
+   private String courseNotFound(int courseID){
+      return AppConstants.COURSE_WITH_ID + courseID + AppConstants.NOT_FOUND;
+   }
+
    /**
     * Deactivates a course by its ID if it exists and is active.
     *
@@ -83,7 +87,7 @@ public class CourseService {
    public void deactivateCourse(int courseId){
       Course course = findCourseById(courseId);
       if(course == null){
-         getDisplayManager().displayError(AppConstants.COURSE_WITH_ID + courseId + AppConstants.NOT_FOUND);
+         getDisplayManager().displayError(courseNotFound(courseId));
          return;
       }
       if(!course.isActive()){
@@ -102,7 +106,7 @@ public class CourseService {
    public void activateCourse(int courseId){
       Course course = findCourseById(courseId);
       if(course == null){
-         getDisplayManager().displayError(AppConstants.COURSE_WITH_ID + courseId + AppConstants.NOT_FOUND);
+         getDisplayManager().displayError(courseNotFound(courseId));
          return;
       }
       if(course.isActive()){
@@ -131,7 +135,7 @@ public class CourseService {
    public void viewCourseDetails(int courseID){
       Course course = findCourseById(courseID);
       if(course == null){
-         getDisplayManager().displayError(AppConstants.COURSE_WITH_ID + courseID + AppConstants.NOT_FOUND);
+         getDisplayManager().displayError(courseNotFound(courseID));
          return;
       }
       getDisplayManager().printWithSurroundingBlankLines(course.toString());
@@ -145,7 +149,7 @@ public class CourseService {
    public void deleteCourse(int courseID){
       Course course = findCourseById(courseID);
       if(course == null){
-         getDisplayManager().displayError(AppConstants.COURSE_WITH_ID + courseID + AppConstants.NOT_FOUND);
+         getDisplayManager().displayError(courseNotFound(courseID));
          return;
       }
       getCourseRepository().getCourses().remove(course);

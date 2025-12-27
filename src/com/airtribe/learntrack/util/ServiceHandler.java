@@ -12,7 +12,7 @@ import com.airtribe.learntrack.util.DisplayManager.DisplayServices;
  * Coordinates initialization and execution of course, student, and enrollment services,
  * and routes user requests via menu-driven handlers.
  */
-public abstract class ServiceHandler {
+public final class ServiceHandler {
 
    private ServiceHandler(){}
 
@@ -22,7 +22,7 @@ public abstract class ServiceHandler {
    private static final ConsoleDisplayService consoleDisplayService = new ConsoleDisplayService();
    private static DisplayServices displayServices;
 
-   private static DisplayServices getDisplayUtil(){ return displayServices; }
+   private static DisplayServices getDisplayServices(){ return displayServices; }
 
    /**
     * Initializes service instances for course, student, and enrollment operations.
@@ -38,7 +38,7 @@ public abstract class ServiceHandler {
     * Displays the entry page and starts handling system service requests.
     */
    public static void startService(){
-      getDisplayUtil().println(MenuOptions.ENTRY_PAGE);
+      getDisplayServices().println(MenuOptions.ENTRY_PAGE);
       ServiceHandler.handleSystemServiceRequest();
    }
 
@@ -47,19 +47,19 @@ public abstract class ServiceHandler {
    private static EnrollmentService getEnrollmentService() { return enrollmentService; }
 
    private static void displaySystemMenu() {
-      getDisplayUtil().println(MenuOptions.SYSTEM_MENU);
+      getDisplayServices().println(MenuOptions.SYSTEM_MENU);
    }
 
    private static void displayStudentServiceMenu() {
-      getDisplayUtil().println(MenuOptions.STUDENT_SERVICE_MENU);
+      getDisplayServices().println(MenuOptions.STUDENT_SERVICE_MENU);
    }
 
    private static void displayCourseServiceMenu() {
-      getDisplayUtil().println(MenuOptions.COURSE_SERVICE_MENU);
+      getDisplayServices().println(MenuOptions.COURSE_SERVICE_MENU);
    }
 
    private static void displayEnrollmentServiceMenu() {
-      getDisplayUtil().println(MenuOptions.ENROLLMENT_SERVICE_MENU);
+      getDisplayServices().println(MenuOptions.ENROLLMENT_SERVICE_MENU);
    }
 
    private static void handleSystemServiceRequest() {
@@ -74,14 +74,14 @@ public abstract class ServiceHandler {
                case 3 -> handleEnrollmentServiceRequest();
 
                case 4 ->{
-                  getDisplayUtil().println(MenuOptions.EXIT_PAGE);
+                  getDisplayServices().println(MenuOptions.EXIT_PAGE);
                   return;
                }
 
-               default -> getDisplayUtil().println(MenuOptions.INVALID_OPTION);
+               default -> getDisplayServices().println(MenuOptions.INVALID_OPTION);
             }
          } catch (Exception e) {
-            getDisplayUtil().println(e.getMessage());
+            getDisplayServices().println(e.getMessage());
          }
       }
    }
@@ -102,10 +102,10 @@ public abstract class ServiceHandler {
                case 9 -> {
                   return;
                }
-               default -> getDisplayUtil().println(MenuOptions.INVALID_OPTION);
+               default -> getDisplayServices().println(MenuOptions.INVALID_OPTION);
             }
          } catch (Exception e) {
-            getDisplayUtil().println(e.getMessage());
+            getDisplayServices().println(e.getMessage());
          }
       }
    }
@@ -138,10 +138,10 @@ public abstract class ServiceHandler {
                   return;
                }
 
-               default -> getDisplayUtil().println(MenuOptions.INVALID_OPTION);
+               default -> getDisplayServices().println(MenuOptions.INVALID_OPTION);
             }
          } catch (Exception e) {
-            getDisplayUtil().println(e.getMessage());
+            getDisplayServices().println(e.getMessage());
          }
       }
    }
@@ -166,10 +166,10 @@ public abstract class ServiceHandler {
                   return;
                }
 
-               default -> getDisplayUtil().println(MenuOptions.INVALID_OPTION);
+               default -> getDisplayServices().println(MenuOptions.INVALID_OPTION);
             }
          } catch (Exception e) {
-            getDisplayUtil().println(e.getMessage());
+            getDisplayServices().println(e.getMessage());
          }
       }
    }

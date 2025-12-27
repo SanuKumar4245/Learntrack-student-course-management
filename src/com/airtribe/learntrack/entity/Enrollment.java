@@ -3,6 +3,7 @@ package com.airtribe.learntrack.entity;
 
 import com.airtribe.learntrack.enums.EnrollmentStatus;
 import static com.airtribe.learntrack.util.IdGenerator.getNextEnrollmentId;
+
 import java.util.Date;
 
 /**

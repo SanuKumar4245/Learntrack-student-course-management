@@ -15,7 +15,7 @@ import static com.airtribe.learntrack.util.InputValidator.validateStudentDetails
 public class StudentService {
 
    private final DisplayServices displayServices;
-   private final StudentRepository studentRepository = new StudentRepository();
+   private static final StudentRepository studentRepository = new StudentRepository();
 
    private StudentRepository getStudentRepository(){ return studentRepository; }
    private DisplayServices getDisplayManager(){ return displayServices; }
@@ -28,6 +28,14 @@ public class StudentService {
     */
    public StudentService(DisplayServices displayServices){
       this.displayServices = displayServices;
+   }
+
+   private void addStudentToStudentRepository(Student newStudent){
+      getStudentRepository().getStudentsList().add(newStudent);
+   }
+
+   private void removeStudentFromStudentRepository(Student student){
+      getStudentRepository().getStudentsList().remove(student);
    }
 
    /**
@@ -45,7 +53,7 @@ public class StudentService {
               new Student(getNextStudentId(), firstName, lastName)
               : new Student(getNextStudentId(), firstName, lastName, email);
 
-      getStudentRepository().getStudentsList().add(newStudent);
+      addStudentToStudentRepository(newStudent);
       getDisplayManager().printWithSurroundingBlankLines("Student added successfully!");
    }
 
@@ -60,7 +68,7 @@ public class StudentService {
          getDisplayManager().displayError(AppConstants.STUDENT_WITH_ID + id + AppConstants.NOT_FOUND);
          return;
       }
-      getStudentRepository().getStudentsList().remove(student);
+      removeStudentFromStudentRepository(student);
       getDisplayManager().printWithSurroundingBlankLines(AppConstants.STUDENT_WITH_ID + id + " removed successfully!");
    }
 
